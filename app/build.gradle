@@ -58,8 +58,9 @@ dependencies {
     implementation "androidx.room:room-ktx:${libs.versions.room.get()}"
     kapt "androidx.room:room-compiler:${libs.versions.room.get()}"
 
-    // Gson
-    implementation "com.google.code.gson:gson:${libs.versions.gson.get()}"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${libs.versions.retrofit.get()}"
+    implementation "com.squareup.retrofit2:converter-gson:${libs.versions.retrofit.get()}"
 
     // Test
     testImplementation 'junit:junit:4.13.2'

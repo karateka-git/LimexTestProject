@@ -15,12 +15,12 @@ dependencyResolutionManagement {
         libs {
             version('navigation', '2.5.1')
 
-            version('gson', '2.9.1')
-
             version('room', '2.4.3')
 
             version('hilt', '2.42')
             plugin('hilt', 'com.google.dagger.hilt.android').versionRef('hilt')
+
+            version('retrofit', '2.9.0')
         }
     }
 }
