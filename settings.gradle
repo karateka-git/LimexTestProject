@@ -21,6 +21,8 @@ dependencyResolutionManagement {
             plugin('hilt', 'com.google.dagger.hilt.android').versionRef('hilt')
 
             version('retrofit', '2.9.0')
+
+            version('glide', '4.12.0')
         }
     }
 }

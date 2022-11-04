@@ -12,7 +12,8 @@ data class Channels(
     val image: String,
     val url: String,
     @SerializedName("current")
-    val currentProgram: Program
+    val currentProgram: Program,
+    var isFavorite: Boolean = false
 )
 
 data class Program(

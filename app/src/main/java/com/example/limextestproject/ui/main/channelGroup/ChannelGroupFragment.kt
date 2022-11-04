@@ -9,6 +9,7 @@ import com.example.limextestproject.databinding.FragmentChannelGroupBinding
 import com.example.limextestproject.ui.common.onDestroyNullable
 import com.example.limextestproject.ui.common.viewModelCreator
 import com.example.limextestproject.ui.main.adapters.ChannelGroupViewPagerAdapter.Companion.ChannelGroups
+import com.example.limextestproject.ui.main.channelGroup.adapters.ChannelsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -34,6 +35,10 @@ class ChannelGroupFragment : Fragment() {
     }
     private var binding by onDestroyNullable<FragmentChannelGroupBinding>()
 
+    private val channelAdapter by lazy {
+        ChannelsAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,6 +50,19 @@ class ChannelGroupFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.title.text = viewModel.currentChannelGroup.title
+        initRecycler()
+        initObservers()
+    }
+
+    private fun initRecycler() {
+        binding.apply {
+            channelsRecycler.adapter = channelAdapter
+        }
+    }
+
+    private fun initObservers() {
+        viewModel.channels.observe(viewLifecycleOwner) {
+            channelAdapter.swapItems(it)
+        }
     }
 }

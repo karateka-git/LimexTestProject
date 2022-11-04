@@ -3,7 +3,7 @@ package com.example.limextestproject.ui.main.channelGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.limextestproject.data.models.Playlist
+import com.example.limextestproject.data.models.Channels
 import com.example.limextestproject.data.remote.repositories.IChannelsRepository
 import com.example.limextestproject.ui.main.adapters.ChannelGroupViewPagerAdapter.Companion.ChannelGroups
 import dagger.assisted.Assisted
@@ -20,8 +20,8 @@ class ChannelGroupViewModel @AssistedInject constructor(
     @Assisted private val channelGroup: ChannelGroups
 ) : ViewModel() {
 
-    val channels: LiveData<Playlist> = liveData {
-        emit(repository.getPlaylist())
+    val channels: LiveData<List<Channels>> = liveData {
+        emit(repository.getPlaylist().channels)
     }
 
     val currentChannelGroup = channelGroup
