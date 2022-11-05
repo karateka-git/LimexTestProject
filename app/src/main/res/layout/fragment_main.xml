@@ -7,12 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
+    <LinearLayout
+        android:id="@+id/channel_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_search"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/channel_search_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="@string/search_channel_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapSentences"
+            android:maxLines="1">
+        </com.google.android.material.textfield.TextInputEditText>
+    </LinearLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/channel_group_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="scrollable"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/channel_search_container"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.viewpager2.widget.ViewPager2

@@ -1,7 +1,8 @@
 package com.example.limextestproject.data.remote.repositories
 
-import com.example.limextestproject.data.models.Playlist
+import com.example.limextestproject.data.models.Channels
 
 interface IChannelsRepository {
-    suspend fun getPlaylist(): Playlist
+
+    suspend fun getChannels(): List<Channels>
 }

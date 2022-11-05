@@ -7,6 +7,7 @@ data class Playlist(
 )
 
 data class Channels(
+    val id: Long,
     @SerializedName("name_ru")
     val name: String,
     val image: String,

@@ -5,9 +5,23 @@ import com.bumptech.glide.Glide
 import com.example.limextestproject.data.models.Channels
 import com.example.limextestproject.databinding.ViewHolderChannelBinding
 
-class ChannelsViewHolder(private val binding: ViewHolderChannelBinding) : RecyclerView.ViewHolder(binding.root) {
+class ChannelsViewHolder(
+    private val binding: ViewHolderChannelBinding,
+    private val favoriteOnClickListener: (Channels) -> Unit
+) : RecyclerView.ViewHolder(binding.root) {
+
+    private var currentItem: Channels? = null
+
+    init {
+        binding.favoriteIcon.setOnClickListener {
+            currentItem?.let {
+                favoriteOnClickListener(it)
+            }
+        }
+    }
 
     fun bindTo(item: Channels) {
+        currentItem = item
         binding.apply {
             Glide.with(root.context)
                 .load(item.image)

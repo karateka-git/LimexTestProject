@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.limextestproject.databinding.FragmentChannelGroupBinding
 import com.example.limextestproject.ui.common.onDestroyNullable
 import com.example.limextestproject.ui.common.viewModelCreator
+import com.example.limextestproject.ui.main.MainViewModel
 import com.example.limextestproject.ui.main.adapters.ChannelGroupViewPagerAdapter.Companion.ChannelGroups
 import com.example.limextestproject.ui.main.channelGroup.adapters.ChannelsAdapter
+import com.example.limextestproject.ui.main.channelGroup.adapters.ChannelsViewHolder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,7 +26,7 @@ class ChannelGroupFragment : Fragment() {
             }
         }
 
-        private const val CHANNEL_GROUP = "CHANNEL_TITLE"
+        private const val CHANNEL_GROUP = "CHANNEL_GROUP_KEY"
     }
 
     @Inject
@@ -33,10 +36,19 @@ class ChannelGroupFragment : Fragment() {
             (requireArguments().getParcelable(CHANNEL_GROUP) as? ChannelGroups)!!
         )
     }
+    private val sharedViewModel: MainViewModel by viewModels(
+        ownerProducer = ::requireParentFragment
+    )
+
     private var binding by onDestroyNullable<FragmentChannelGroupBinding>()
 
     private val channelAdapter by lazy {
-        ChannelsAdapter()
+        ChannelsAdapter {
+            ChannelsViewHolder(
+                it,
+                viewModel::addChannelToFavorite
+            )
+        }
     }
 
     override fun onCreateView(
@@ -63,6 +75,9 @@ class ChannelGroupFragment : Fragment() {
     private fun initObservers() {
         viewModel.channels.observe(viewLifecycleOwner) {
             channelAdapter.swapItems(it)
+        }
+        sharedViewModel.searchQuery.observe(viewLifecycleOwner) {
+            viewModel.filterChannels(it)
         }
     }
 }

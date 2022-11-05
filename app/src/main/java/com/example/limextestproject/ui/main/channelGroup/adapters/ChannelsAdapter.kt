@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.limextestproject.data.models.Channels
 import com.example.limextestproject.databinding.ViewHolderChannelBinding
 
-class ChannelsAdapter : RecyclerView.Adapter<ChannelsViewHolder>() {
+class ChannelsAdapter(
+    private val createViewHolder: (ViewHolderChannelBinding) -> ChannelsViewHolder
+) : RecyclerView.Adapter<ChannelsViewHolder>() {
 
     private val differ = AsyncListDiffer(
         this,
@@ -26,7 +28,7 @@ class ChannelsAdapter : RecyclerView.Adapter<ChannelsViewHolder>() {
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelsViewHolder =
-        ChannelsViewHolder(ViewHolderChannelBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        createViewHolder(ViewHolderChannelBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ChannelsViewHolder, position: Int) {
         holder.bindTo(differ.currentList[position])
