@@ -15,6 +15,8 @@ dependencyResolutionManagement {
         libs {
             version('navigation', '2.5.1')
 
+            plugin('safeargs', 'androidx.navigation.safeargs').versionRef('navigation')
+
             version('room', '2.4.3')
 
             version('hilt', '2.42')
