@@ -2,15 +2,15 @@ package com.example.limextestproject.ui.main.channelGroup.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.limextestproject.data.models.Channels
+import com.example.limextestproject.data.models.Channel
 import com.example.limextestproject.databinding.ViewHolderChannelBinding
 
 class ChannelsViewHolder(
     private val binding: ViewHolderChannelBinding,
-    private val favoriteOnClickListener: (Channels) -> Unit
+    private val favoriteOnClickListener: (Channel) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private var currentItem: Channels? = null
+    private var currentItem: Channel? = null
 
     init {
         binding.favoriteIcon.setOnClickListener {
@@ -20,7 +20,7 @@ class ChannelsViewHolder(
         }
     }
 
-    fun bindTo(item: Channels) {
+    fun bindTo(item: Channel) {
         currentItem = item
         binding.apply {
             Glide.with(root.context)

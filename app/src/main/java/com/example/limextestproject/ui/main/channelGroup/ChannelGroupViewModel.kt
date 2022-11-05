@@ -2,7 +2,7 @@ package com.example.limextestproject.ui.main.channelGroup
 
 import androidx.lifecycle.*
 import com.example.limextestproject.data.local.repositories.IFavoriteChannelsRepository
-import com.example.limextestproject.data.models.Channels
+import com.example.limextestproject.data.models.Channel
 import com.example.limextestproject.data.remote.repositories.IChannelsRepository
 import com.example.limextestproject.ui.main.adapters.ChannelGroupViewPagerAdapter.Companion.ChannelGroups
 import dagger.assisted.Assisted
@@ -23,8 +23,8 @@ class ChannelGroupViewModel @AssistedInject constructor(
     @Assisted private val channelGroup: ChannelGroups
 ) : ViewModel() {
 
-    private val _channels: MutableLiveData<List<Channels>> = MutableLiveData()
-    val channels: LiveData<List<Channels>> = _channels.map {
+    private val _channels: MutableLiveData<List<Channel>> = MutableLiveData()
+    val channels: LiveData<List<Channel>> = _channels.map {
         filterByChannelGroup(it)
     }
 
@@ -39,7 +39,7 @@ class ChannelGroupViewModel @AssistedInject constructor(
         }
     }
 
-    fun addChannelToFavorite(updatedChannel: Channels) {
+    fun addChannelToFavorite(updatedChannel: Channel) {
         updateFavoriteGroup(updatedChannel)
     }
 
@@ -52,7 +52,7 @@ class ChannelGroupViewModel @AssistedInject constructor(
         }
     }
 
-    private fun updateFavoriteGroup(channel: Channels) {
+    private fun updateFavoriteGroup(channel: Channel) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 if (channel.isFavorite) {
@@ -64,7 +64,7 @@ class ChannelGroupViewModel @AssistedInject constructor(
         }
     }
 
-    private fun filterByChannelGroup(allChannels: List<Channels>): List<Channels> {
+    private fun filterByChannelGroup(allChannels: List<Channel>): List<Channel> {
         return allChannels.filter {
             when (channelGroup) {
                 ChannelGroups.FAVORITES -> it.isFavorite
@@ -73,7 +73,7 @@ class ChannelGroupViewModel @AssistedInject constructor(
         }
     }
 
-    private fun updateChannelsFavoriteState(channels: List<Channels>, favoriteChannelIds: List<Long>): List<Channels> {
+    private fun updateChannelsFavoriteState(channels: List<Channel>, favoriteChannelIds: List<Long>): List<Channel> {
         return channels.toMutableList().apply {
             forEachIndexed { index, channel ->
                 if (favoriteChannelIds.contains(channel.id) && channel.isFavorite.not()) {

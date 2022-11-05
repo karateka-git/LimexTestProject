@@ -3,10 +3,10 @@ package com.example.limextestproject.data.models
 import com.google.gson.annotations.SerializedName
 
 data class Playlist(
-    val channels: List<Channels>
+    val channels: List<Channel>
 )
 
-data class Channels(
+data class Channel(
     val id: Long,
     @SerializedName("name_ru")
     val name: String,

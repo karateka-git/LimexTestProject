@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.limextestproject.data.models.Channels
+import com.example.limextestproject.data.models.Channel
 import com.example.limextestproject.databinding.ViewHolderChannelBinding
 
 class ChannelsAdapter(
@@ -15,13 +15,13 @@ class ChannelsAdapter(
 
     private val differ = AsyncListDiffer(
         this,
-        object : DiffUtil.ItemCallback<Channels>() {
-            override fun areItemsTheSame(oldItem: Channels, newItem: Channels): Boolean {
+        object : DiffUtil.ItemCallback<Channel>() {
+            override fun areItemsTheSame(oldItem: Channel, newItem: Channel): Boolean {
                 return oldItem === newItem
             }
 
             @SuppressLint("DiffUtilEquals")
-            override fun areContentsTheSame(oldItem: Channels, newItem: Channels): Boolean {
+            override fun areContentsTheSame(oldItem: Channel, newItem: Channel): Boolean {
                 return oldItem == newItem
             }
         }
@@ -36,7 +36,7 @@ class ChannelsAdapter(
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    fun swapItems(newItems: List<Channels>) {
+    fun swapItems(newItems: List<Channel>) {
         differ.submitList(newItems)
     }
 }
