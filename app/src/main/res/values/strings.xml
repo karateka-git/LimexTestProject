@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">LimexTestProject</string>
     <string name="search_channel_hint">Напишите название телеканала</string>
+    <string name="time_until_end">Осталось %d минут</string>
 </resources>

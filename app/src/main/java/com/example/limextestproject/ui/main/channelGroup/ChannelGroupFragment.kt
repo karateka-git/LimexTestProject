@@ -86,6 +86,6 @@ class ChannelGroupFragment : Fragment() {
     }
 
     private fun openPlayer(channel: Channel) {
-        findNavController().navigate(MainFragmentDirections.actionMainFragmentToPlayerFragment(channel.url))
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToPlayerFragment(channel))
     }
 }

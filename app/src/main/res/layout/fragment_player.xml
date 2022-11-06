@@ -8,6 +8,7 @@
         android:id="@+id/exoplayer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:controller_layout_id="@layout/custom_player_controls"
+        app:resize_mode="fill"
         app:show_buffering="always"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
