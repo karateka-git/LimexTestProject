@@ -68,6 +68,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:${libs.versions.glide.get()}"
     kapt "com.github.bumptech.glide:compiler:${libs.versions.glide.get()}"
 
+    // ExoPlayer
+    implementation "com.google.android.exoplayer:exoplayer:${libs.versions.exoplayer.get()}"
+
     // Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

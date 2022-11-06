@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.limextestproject.data.models.Channel
 import com.example.limextestproject.databinding.FragmentChannelGroupBinding
 import com.example.limextestproject.ui.common.onDestroyNullable
 import com.example.limextestproject.ui.common.viewModelCreator
+import com.example.limextestproject.ui.main.MainFragmentDirections
 import com.example.limextestproject.ui.main.MainViewModel
 import com.example.limextestproject.ui.main.adapters.ChannelGroupViewPagerAdapter.Companion.ChannelGroups
 import com.example.limextestproject.ui.main.channelGroup.adapters.ChannelsAdapter
@@ -46,7 +49,8 @@ class ChannelGroupFragment : Fragment() {
         ChannelsAdapter {
             ChannelsViewHolder(
                 it,
-                viewModel::addChannelToFavorite
+                viewModel::addChannelToFavorite,
+                ::openPlayer
             )
         }
     }
@@ -79,5 +83,9 @@ class ChannelGroupFragment : Fragment() {
         sharedViewModel.searchQuery.observe(viewLifecycleOwner) {
             viewModel.filterChannels(it)
         }
+    }
+
+    private fun openPlayer(channel: Channel) {
+        findNavController().navigate(MainFragmentDirections.actionMainFragmentToPlayerFragment(channel.url))
     }
 }

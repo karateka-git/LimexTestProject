@@ -25,6 +25,8 @@ dependencyResolutionManagement {
             version('retrofit', '2.9.0')
 
             version('glide', '4.12.0')
+
+            version('exoplayer', '2.18.1')
         }
     }
 }

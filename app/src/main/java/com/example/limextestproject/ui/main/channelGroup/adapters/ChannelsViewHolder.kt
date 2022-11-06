@@ -7,15 +7,23 @@ import com.example.limextestproject.databinding.ViewHolderChannelBinding
 
 class ChannelsViewHolder(
     private val binding: ViewHolderChannelBinding,
-    private val favoriteOnClickListener: (Channel) -> Unit
+    private val favoriteOnClickListener: (Channel) -> Unit,
+    private val onItemClick: (Channel) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private var currentItem: Channel? = null
 
     init {
-        binding.favoriteIcon.setOnClickListener {
-            currentItem?.let {
-                favoriteOnClickListener(it)
+        binding.apply {
+            root.setOnClickListener {
+                currentItem?.let {
+                    onItemClick(it)
+                }
+            }
+            favoriteIcon.setOnClickListener {
+                currentItem?.let {
+                    favoriteOnClickListener(it)
+                }
             }
         }
     }
